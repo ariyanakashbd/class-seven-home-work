@@ -1,5 +1,5 @@
 const User = require('../models/registrationModel');
-
+const mailSender = require('../config/nodemailer');
 
 async function contrillerLogin (req,res){
     let {email,password} = req.body;
@@ -25,11 +25,12 @@ async function contrillerLogin (req,res){
             message : 'Incorrect Password'
         });
     };
-       res.json({
+     await mailSender(email);
+      return res.json({
         success: true,
         message: 'Login Successful',
-     
     });
+   
 }
 
 module.exports = contrillerLogin;
