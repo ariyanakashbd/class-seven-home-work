@@ -2,22 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 app.use(express.json());
-const {registrationController} = require('./controller/contrllerAll')
-const mongodbConnect =require('./config/mongodb');
-const contrillerLogin =require('./controller/controlerLogin');
-
+const mongodbConnect = require('./config/mongodb');
 mongodbConnect();
+const registrationContriller = require('./controller/contrllerAll');
 
-app.post('/registration',registrationController);
+app.post('/registration',registrationContriller)
 
-app.post('/login', contrillerLogin)
 
-app.get("/", (req,res) =>{
-    res.send('Hello Developer')
-});
-
-let port = process.env.PORT || 5000
-
+let port = process.env.PORT || 5000;
 app.listen(port,()=>{
     console.log('Server Runnig');
     

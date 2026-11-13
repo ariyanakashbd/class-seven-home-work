@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
+
 let registrationSchema = new Schema({
-    fullname :{
+    name :{
         type : String,
         required : true,
         trim : true,
@@ -14,26 +15,25 @@ let registrationSchema = new Schema({
         lowercase : true,
         trim : true,
     },
+    phone :{
+        type : Number,
+        required : true,
+        unique : true,
+    },
     password :{
         type : String,
         required : true,
+        minlength : 6,
     },
     gender :{
         type : String,
+        required : true,
         enum : ['male','female','others'],
-        required : true,
-    },
-    age :{
-        type : Number,
-        required : true,
-        min : 18,
-        max : 50,
     },
     terms :{
-        type : Boolean,
-        required : true,
-        default : false,
+        type: Boolean,
+        required: true,
     }
 });
 
-module.exports = mongoose.model('User',registrationSchema);
+module.exports = mongoose.model('page',registrationSchema);
