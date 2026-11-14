@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 const mongodbConnect = require('./config/mongodb');
 mongodbConnect();
-const registrationContriller = require('./controller/contrllerAll');
+const registrationContriller = require('./controller/contrllerRegistration');
 const loginController = require('./controller/controlerLogin');
 const studentData = require('./controller/studentAttendence');
 const dataRead = require('./controller/studentDataRead');
