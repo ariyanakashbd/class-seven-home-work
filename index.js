@@ -8,7 +8,7 @@ const registrationContriller = require('./controller/contrllerAll');
 const loginController = require('./controller/controlerLogin');
 
 app.post('/registration',registrationContriller);
-app.post ('/login',loginController)
+app.post ('/login',loginController);
 
 
 let port = process.env.PORT || 5000;
