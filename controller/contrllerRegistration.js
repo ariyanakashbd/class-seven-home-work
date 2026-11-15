@@ -2,8 +2,11 @@ const user = require('../models/registrationModel');
 const mailsender = require('../config/nodemailer');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+
 async function registrationController(req,res) {
     let {name,email,number,password,gender,terms} = req.body;
+
+    
 
     if(!name && !email && !number && !password && !gender && !terms){
         return res.json({
@@ -38,12 +41,13 @@ async function registrationController(req,res) {
         });
     };
 
-    if(emailRegex.test(email)){
+    if(!emailRegex.test(email)){
        return res.json({
         success : false,
         message : 'Please Enter Your Valid Email'
        });
     };
+  
 
     let existinguser = await user.findOne({email : email});
 
@@ -70,6 +74,5 @@ async function registrationController(req,res) {
         success : true,
         message : 'Registration Successfull '
     });
-};
-
+}
 module.exports = registrationController;

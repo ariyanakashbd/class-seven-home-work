@@ -11,7 +11,7 @@ let registrationSchema = new Schema({
         type : String,
         required : true,
         trim : true,
-        lowarcase : true,
+        lowercase : true,
     },
     number :{
         type : Number,
