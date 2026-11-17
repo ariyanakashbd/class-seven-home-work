@@ -4,7 +4,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 
 async function registrationController(req,res) {
-    let {name,email,number,password,gender,terms} = req.body;
+    let {name,email,number,password,confirmPassword,gender,terms} = req.body;
 
     
 
@@ -27,7 +27,9 @@ async function registrationController(req,res) {
     };
     if(!password){
         errors.password = 'Plase Enter Your Password'
-    };
+    }else if(password !== confirmPassword){
+        errors.confirmPassword = 'Do Not Match Confirm Password'
+    }
     if(!gender){
         errors.gender = 'Plase Enter Your Gender'
     };

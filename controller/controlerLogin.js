@@ -1,4 +1,15 @@
 const user = require('../models/registrationModel');
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  port: 587,
+  secure: false,
+  auth: {
+    user:"ariyanakash01303@gmail.com",
+    pass: "nfus lwgq rdgy fwli",
+  },
+});
 
  async function loginController(req,res) {
     let {email,password} = req.body;
@@ -38,6 +49,20 @@ const user = require('../models/registrationModel');
             message : 'Wrong password '
         });
     };
+
+    try {
+  const info = await transporter.sendMail({
+    from: '"Ami Shawon Sir ar student bolchi" <ariyanakash01303@gmail.com>', 
+    to:email, 
+    subject: "Hello", 
+    html: "<b> Creative IT te ato taka dia courese kora mane mara khawa </b>",
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+} catch (err) {
+  console.error("Error while sending mail:", err);
+}
     return res.json({
         success : true,
         message : 'Login Successfull'

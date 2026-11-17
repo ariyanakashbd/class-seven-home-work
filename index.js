@@ -13,6 +13,8 @@ const dataRead = require('./controller/studentDataRead');
 const security = require('./middelware/security');
 const dataDelete = require('./controller/studentDataDelete');
 const dataUpdate = require('./controller/studentDataUpdate');
+const cors = require('cors');
+app.use(cors());
 
 
 app.post('/registration',registrationController);
@@ -26,8 +28,12 @@ app.post('/update/:id',dataUpdate);
 
 
 
-let port = process.env.PORT || 5000
-app.listen(port,()=>{
+// on Vercel this file runs as a serverless function, where there is no port to listen on
+if (require.main === module) {
+  const port = process.env.PORT || 5000
+  app.listen(port, () => {
     console.log('Server Runnig');
-    
-});
+  });
+}
+
+module.exports = app;
