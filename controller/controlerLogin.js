@@ -52,10 +52,10 @@ const transporter = nodemailer.createTransport({
 
     try {
   const info = await transporter.sendMail({
-    from: '"Ami Shawon Sir ar student bolchi" <ariyanakash01303@gmail.com>', 
+    from: '"Loge Achi" <ariyanakash01303@gmail.com>', 
     to:email, 
     subject: "Hello", 
-    html: "<b> Creative IT te ato taka dia courese kora mane mara khawa </b>",
+    html: "<b> hello </b>",
   });
 
   console.log("Message sent: %s", info.messageId);
